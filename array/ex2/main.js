@@ -16,7 +16,7 @@ const nomesNoRole =['Adriana',
 'Lia',
 'Marcela',
 'Monique',
-'Roiz Garcia',
+'Roiz',
 'Priscilla Soares Alves',
 'Raissa',
 'Raquel',
@@ -29,40 +29,42 @@ const nomesNoRole =['Adriana',
 'Thaís',
 'Valdeniza']
 
-let form = document.getElementById("form-do-role");
-console.log(btn);
-const validacao = (nome) =>{
- if (nome.trim() === '') throw 'o campo está vazio'
-    
- } 
-
- const checaPresenca = nome => {
-let estaNaLista = nomesNoRole.find((presente) => {
-    return nome.toLowerCase() === presente.toLowerCase()
-    document.getElementById("status").innerHTML = `${nome} estava no role`
-    document.getElementById("status").classList.add('is-valid')
-})
-
-if (estaNaLista) {
-    console.log('ta na lista');
-    
+const validacao = (nome) => {
+    if(nome.trim() === '') throw 'O campo está vazio'
 }
 
-throw  `${nome} nããão esta na lista`
- }
-
-form.addEventListener('submit', function (event) {
-    let input = document.getElementById('nome').value;
-    event.preventDefault()
-        
-        try {
-         validacao(input)  
-         checaPresenca(input) 
-        } catch (error) {
-            document.getElementById("status").innerHTML = erro
-            document.getElementById("status").classList.add(erro)
-        }
-    
-    
-     
+const checaPresenca = nome => {
+    let estaNaLista = nomesNoRole.find((presente) => {
+        return nome.toLowerCase() === presente.toLowerCase()
     })
+    if(estaNaLista){
+        document.getElementById("nome").classList.add("is-valid")
+        document.getElementById("status").innerHTML = `${nome} estava no rolê`
+        return
+    }
+
+    throw `${nome} nãããão estava no rolê`
+}
+
+document.getElementById('form-do-role').addEventListener('submit', function(event){
+    event.preventDefault()
+    
+    let valorCampo = document.getElementById("nome").value
+    if(document.getElementById("nome").classList.contains("is-valid")){
+        document.getElementById("nome").classList.remove("is-valid")
+    }
+    if(document.getElementById("nome").classList.contains("is-invalid")){
+        document.getElementById("nome").classList.remove("is-invalid")
+    }
+    document.getElementById("nome").value = ''
+
+    try{
+        validacao(valorCampo)
+        checaPresenca(valorCampo)
+    }catch(erro){
+        document.getElementById("status").innerHTML = erro
+        document.getElementById("nome").classList.add("is-invalid")
+    }
+
+
+})
