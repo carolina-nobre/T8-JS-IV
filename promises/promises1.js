@@ -10,7 +10,15 @@ function falarDepoisDe(segundos,frase) {
     })
 }
 
-falarDepoisDe(3, "Hum,esperei para falar").then(frase=> console.log(`${frase} - vim da promise`)).catch(e=>console.log(e))
-//aqui o then vai fazer com que tenha a resposta depois dos parametros passados como o 3 e a frase passada da função passada lá em cima
-// o catch vai passar  a resposta com as informações no reject
-//reject=catch then=resolve
+function irPraCasaDosAmigos() {
+    cheguei = true;
+    return cheguei
+}
+function comprarEmOutroLugar(){
+    console.log("To sem comida, não dá pra ir sem nada")
+}
+
+assarPizza(10).then(resposta => irPraCasaDosAmigos()).then( respostaDosAmigos => console.log(`${respostaDosAmigos ? "Vamos chamar o uber" : "Calmae, já to chegnado"}`)).catch(erro => comprarEmOutroLugar())
+let condicao = false
+console.log(`${ condicao ? 'Verdade' : 'Mentira'}`)
+
