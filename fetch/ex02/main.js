@@ -1,10 +1,9 @@
 const cepInput = document.getElementById("cep")
 const logradouroInput = document.getElementById("logradouro")
-const complementosInput = document.getElementById("complemento")
-const  bairroInput = document.getElementById("bairro")
+const complementoInput = document.getElementById("complemento")
+const bairroInput = document.getElementById("bairro")
 const localidadeInput = document.getElementById("localidade")
 const ufInput = document.getElementById("uf")
-//... continuem a pegar os inputs do index.html para preencher depois com o valor da api
 
 cepInput.addEventListener("blur", ()=>{
     if(cepInput.value){
@@ -19,7 +18,7 @@ cepInput.addEventListener("blur", ()=>{
             localidadeInput.value = (json.localidade)
             ufInput.value = (json.uf)
             ///façam aparecer os valores nos inputs
-
+            preencheInputs(json)
         })
     }
 })
